@@ -30,7 +30,7 @@ public class main {
         System.out.printf(mensagem, valor);
     }
 
-    public static void verificar_opcao(int opcao, Contador contador) {
+    public static void verificar_opcao(int opcao, Contador contador, Scanner leitor) {
         switch(opcao) {
             case 1:
                 imprimir_mensagem_int("\nO valor da variável <contagem> é: %d\n", contador.get_contagem());
@@ -42,6 +42,12 @@ public class main {
             case 3:
                 contador.decrementar_contagem();
                 imprimir_mensagem_int("\nO valor da variável <contagem> foi decrementado.\nAgora, valor do contador é: %d\n", contador.get_contagem());
+                break;
+            case 4:
+                imprimir_mensagem("\nDigite o novo valor para o contador: ");
+                int novo_valor = ler_inteiro(leitor);
+                contador.set_contagem(novo_valor);
+                imprimir_mensagem_int("\nO valor da variável <contagem> foi alterado.\nAgora, o valor do contador é: %d\n", contador.get_contagem());
                 break;
             case 99:
                 imprimir_mensagem("\nPrograma  encerrado.\n");
@@ -56,9 +62,9 @@ public class main {
     public static void loop_menu(Scanner leitor, Contador contador) {
         int opcao;
         while(true) {
-            imprimir_mensagem("\nO que deseja fazer a seguir?\n1 - Verificar o valor do contador\n2 - Incrementar o valor do contador\n3 - Decrementar o valor do contador\n99 - Sair\n");
+            imprimir_mensagem("\nO que deseja fazer a seguir?\n1 - Verificar o valor do contador\n2 - Incrementar o valor do contador\n3 - Decrementar o valor do contador\n4 - Definir um novo valor para o contador\n99 - Sair\n");
             opcao = ler_inteiro(leitor);
-            verificar_opcao(opcao, contador);
+            verificar_opcao(opcao, contador, leitor);
         }
     }
 
